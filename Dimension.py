@@ -1,5 +1,5 @@
 from glob import glob
-import shutil
+from zipfile import ZipFile
 #-*- coding: utf-8 -*-
 
 #\\Users\\Administrador\\Desktop\\DimensionData\\Datos\\standard.export
@@ -9,7 +9,8 @@ import shutil
 
 Archivoszip=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.zip")
 for na in Archivoszip:
-    shutil.unpack_archive(na)
+    archivo=ZipFile(na)
+    texto=archivo.extractall("\\Users\\ksanchez\\Desktop\\DataBase\\prueba")
 
 lista=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt")
 for na in lista:
@@ -33,6 +34,7 @@ for na in lista:
     cadena17=""
     cadena18=""
     cadena19=""
+    cadena20=""
     
     for reglon in open(na):
         parte=reglon.split("|")
@@ -40,7 +42,7 @@ for na in lista:
         if parte[0]=="EMPID":
             localEMP=parte[1]
             fechaEMP=parte[3]
-        elif parte[0]=="EMPDSC" or parte[0]=="EMPTM" or parte[0]=="EMPOTSLS":
+        elif parte[0]=="EMP" or parte[0]=="EMPDSC" or parte[0]=="EMPTM" or parte[0]=="EMPOTSLS":
                 parte.insert(1,fechaEMP)
                 parte.insert(1,localEMP)
         elif parte[0]=="FPID":
@@ -118,6 +120,8 @@ for na in lista:
             cadena18+=str("|".join(parte))
         elif parte[0]=="PAY":
             cadena19+=str("|".join(parte))
+        elif parte[0]=="EMP":
+            cadena20+=str("|".join(parte))
 
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_EMPDSC.csv","a+")
     file.write(cadena1)
