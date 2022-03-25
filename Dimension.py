@@ -1,4 +1,5 @@
-import glob
+from glob import glob
+import shutil
 #-*- coding: utf-8 -*-
 
 #\\Users\\Administrador\\Desktop\\DimensionData\\Datos\\standard.export
@@ -6,7 +7,11 @@ import glob
 #\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt
 #\\Users\\ksanchez\\Desktop\\DataBase\\destino2\
 
-lista=glob.glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt")
+Archivoszip=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.zip")
+for na in Archivoszip:
+    shutil.unpack_archive(na)
+
+lista=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt")
 for na in lista:
 
     cadena1=""
