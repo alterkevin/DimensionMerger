@@ -1,5 +1,7 @@
 from glob import glob
 from zipfile import ZipFile
+from shutil import move
+from os import remove
 #-*- coding: utf-8 -*-
 
 #\\Users\\Administrador\\Desktop\\DimensionData\\Datos\\standard.export
@@ -11,9 +13,13 @@ Archivoszip=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.zip")
 for na in Archivoszip:
     archivo=ZipFile(na)
     texto=archivo.extractall("\\Users\\ksanchez\\Desktop\\DataBase\\prueba")
+    archivo.close()
+    move(na,"\\Users\\ksanchez\\Desktop\\DataBase\\backup")
+
 
 lista=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt")
 for na in lista:
+    texto=open(na)
 
     cadena1=""
     cadena2=""
@@ -35,8 +41,9 @@ for na in lista:
     cadena18=""
     cadena19=""
     cadena20=""
-    
-    for reglon in open(na):
+
+
+    for reglon in texto:
         parte=reglon.split("|")
 
         if parte[0]=="EMPID":
@@ -45,12 +52,14 @@ for na in lista:
         elif parte[0]=="EMP" or parte[0]=="EMPDSC" or parte[0]=="EMPTM" or parte[0]=="EMPOTSLS":
                 parte.insert(1,fechaEMP)
                 parte.insert(1,localEMP)
+
         elif parte[0]=="FPID":
             localFP=parte[1]
             fechaFP=parte[3]
         elif parte[0]=="FPSUM" or parte[0]=="FPOT" or parte[0]=="FPMI":
                 parte.insert(1,fechaFP)
                 parte.insert(1,localFP)
+
         elif parte[0]=="GLID":
             localGL=parte[1]
             fechaGL=parte[3]
@@ -59,28 +68,33 @@ for na in lista:
         or parte[0]=="NONSLS" or parte[0]=="CMB" or parte[0]=="OTD"):
                 parte.insert(1,fechaGL)
                 parte.insert(1,localGL)    
+
         elif parte[0]=="INVID":
             localINV=parte[1]
             fechaINV=parte[3]
 #        elif parte[0]=="EMPDSC" or parte[0]=="EMPTM" or parte[0]=="EMPOTSLS":
 #                parte.insert(1,fechaINV)
 #                parte.insert(1,localINV)
+
         elif parte[0]=="LOCID":
             localLOC=parte[1]
             fechaLOC=parte[3]
         elif parte[0]=="LOC":
                 parte.insert(1,fechaLOC)
                 parte.insert(1,localLOC)
+
         elif parte[0]=="PAYID":
             localPAY=parte[1]
             fechaPAY=parte[3]
         elif parte[0]=="PAY":
                 parte.insert(1,fechaPAY)
                 parte.insert(1,localPAY)
+
         else:
             file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\dimension_unknown.txt","a+")
             file.write(f"Se detecto la dimension desconocida {parte[0]} en el archivo {na}\n")
             file.close()
+
 
         if parte[0]=="EMPDSC":
             cadena1+=str("|".join(parte))
@@ -88,12 +102,14 @@ for na in lista:
             cadena2+=str("|".join(parte))            
         elif parte[0]=="EMPOTSLS":
             cadena3+=str("|".join(parte))
+
         elif parte[0]=="FPSUM":
             cadena4+=str("|".join(parte))
         elif parte[0]=="FPOT":
             cadena5+=str("|".join(parte))
         elif parte[0]=="FPMI":
             cadena6+=str("|".join(parte))
+
         elif parte[0]=="SUM":
             cadena7+=str("|".join(parte))
         elif parte[0]=="DSC":
@@ -116,12 +132,16 @@ for na in lista:
             cadena16+=str("|".join(parte))
         elif parte[0]=="OTD":
             cadena17+=str("|".join(parte))
+
         elif parte[0]=="LOC":
             cadena18+=str("|".join(parte))
+
         elif parte[0]=="PAY":
             cadena19+=str("|".join(parte))
+
         elif parte[0]=="EMP":
             cadena20+=str("|".join(parte))
+
 
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_EMPDSC.csv","a+")
     file.write(cadena1)
@@ -132,6 +152,7 @@ for na in lista:
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_EMPOTSLS.csv","a+")
     file.write(cadena3)
     file.close()
+
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_FPSUM.csv","a+")
     file.write(cadena4)
     file.close()
@@ -141,6 +162,7 @@ for na in lista:
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_FPMI.csv","a+")
     file.write(cadena6)
     file.close()
+
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_SUM.csv","a+")
     file.write(cadena7)
     file.close()
@@ -174,9 +196,14 @@ for na in lista:
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_OTD.csv","a+")
     file.write(cadena17)
     file.close()
+
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_LOC.csv","a+")
     file.write(cadena18)
     file.close()
+
     file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\d_standard_PAY.csv","a+")
     file.write(cadena19)
     file.close()
+
+    texto.close()
+    remove(na)
