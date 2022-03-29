@@ -17,6 +17,7 @@ for na in Archivoszip:
     move(na,"\\Users\\ksanchez\\Desktop\\DataBase\\backup")
 
 
+
 lista=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt")
 for na in lista:
     texto=open(na)
@@ -80,6 +81,7 @@ for na in lista:
     cadenaPAY=""
     cadenaTC=""
     cadenaTCADJ=""
+
 
 
     for reglon in texto:
@@ -147,6 +149,7 @@ for na in lista:
             file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\dimension_unknown.txt","a+")
             file.write(f"Se detecto la dimension desconocida {parte[0]} en el archivo {na}\n")
             file.close()
+
 
 
         if parte[0]=="EMP":
@@ -261,168 +264,221 @@ for na in lista:
             cadenaTCADJ+=str("|".join(parte)) 
 
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMP.csv","a+")
-    file.write(cadenaEMP)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSHFT.csv","a+")
-    file.write(cadenaEMPSHFT)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSVC.csv","a+")
-    file.write(cadenaEMPSVC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPDSC.csv","a+")
-    file.write(cadenaEMPDSC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPTM.csv","a+")
-    file.write(cadenaEMPTM)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSLS.csv","a+")
-    file.write(cadenaEMPSLS)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPOTSLS.csv","a+")
-    file.write(cadenaEMPOTSLS)
-    file.close()
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_FPSUM.csv","a+")
-    file.write(cadenaFPSUM)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_PFOT.csv","a+")
-    file.write(cadenaFPOT)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_FPMI.csv","a+")
-    file.write(cadenaFPMI)
-    file.close()
+    if cadenaEMP != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMP.csv","a+")
+        file.write(cadenaEMP)
+        file.close()
+    if cadenaEMPSHFT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSHFT.csv","a+")
+        file.write(cadenaEMPSHFT)
+        file.close()
+    if cadenaEMPSVC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSVC.csv","a+")
+        file.write(cadenaEMPSVC)
+        file.close()
+    if cadenaEMPDSC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPDSC.csv","a+")
+        file.write(cadenaEMPDSC)
+        file.close()
+    if cadenaEMPTM != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPTM.csv","a+")
+        file.write(cadenaEMPTM)
+        file.close()
+    if cadenaEMPSLS != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSLS.csv","a+")
+        file.write(cadenaEMPSLS)
+        file.close()
+    if cadenaEMPOTSLS != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPOTSLS.csv","a+")
+        file.write(cadenaEMPOTSLS)
+        file.close()
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_SUM.csv","a+")
-    file.write(cadenaSUM)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_DSC.csv","a+")
-    file.write(cadenaDSC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_SVC.csv","a+")
-    file.write(cadenaSVC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_TND.csv","a+")
-    file.write(cadenaTND)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_TAX.csv","a+")
-    file.write(cadenaTAX)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_OT.csv","a+")
-    file.write(cadenaOT)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_GLC.csv","a+")
-    file.write(cadenaGLC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_PIO.csv","a+")
-    file.write(cadenaPIO)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_MID.csv","a+")
-    file.write(cadenaMID)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_MNPR.csv","a+")
-    file.write(cadenaMNPR)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CHDR.csv","a+")
-    file.write(cadenaCHDR)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CDTL.csv","a+")
-    file.write(cadenaCDTL)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CMI.csv","a+")
-    file.write(cadenaCMI)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CSVC.csv","a+")
-    file.write(cadenaCSVC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CTND.csv","a+")
-    file.write(cadenaCTND)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CDSC.csv","a+")
-    file.write(cadenaCDSC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_COTD.csv","a+")
-    file.write(cadenaCOTD)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CTAX.csv","a+")
-    file.write(cadenaCTAX)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CVAT.csv","a+")
-    file.write(cadenaCVAT)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_FFD.csv","a+")
-    file.write(cadenaFFD)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_FFL.csv","a+")
-    file.write(cadenaFFL)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CASH.csv","a+")
-    file.write(cadenaCASH)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_NONSLS.csv","a+")
-    file.write(cadenaNONSLS)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CHSRSHFT.csv","a+")
-    file.write(cadenaCSHRSHFT)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CMB.csv","a+")
-    file.write(cadenaCMB)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_KDS.csv","a+")
-    file.write(cadenaKDS)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_OTD.csv","a+")
-    file.write(cadenaOTD)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_WST.csv","a+")
-    file.write(cadenaWST)
-    file.close()
+    if cadenaFPSUM != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_FPSUM.csv","a+")
+        file.write(cadenaFPSUM)
+        file.close()
+    if cadenaFPOT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_PFOT.csv","a+")
+        file.write(cadenaFPOT)
+        file.close()
+    if cadenaFPMI != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_FPMI.csv","a+")
+        file.write(cadenaFPMI)
+        file.close()
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_INV.csv","a+")
-    file.write(cadenaINV)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_WST.csv","a+")
-    file.write(cadenaWST)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_PO.csv","a+")
-    file.write(cadenaPO)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_PODTL.csv","a+")
-    file.write(cadenaPODTL)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_RCPT.csv","a+")
-    file.write(cadenaRCPT)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_RCPTDTL.csv","a+")
-    file.write(cadenaRCPTDTL)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_XFER.csv","a+")
-    file.write(cadenaXFER)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_XFERDTL.csv","a+")
-    file.write(cadenaXFERDTL)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_INVWST.csv","a+")
-    file.write(cadenaINVWST)
-    file.close()
+    if cadenaSUM != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_SUM.csv","a+")
+        file.write(cadenaSUM)
+        file.close()
+    if cadenaDSC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_DSC.csv","a+")
+        file.write(cadenaDSC)
+        file.close()
+    if cadenaSVC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_SVC.csv","a+")
+        file.write(cadenaSVC)
+        file.close()
+    if cadenaTND != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_TND.csv","a+")
+        file.write(cadenaTND)
+        file.close()
+    if cadenaTAX != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_TAX.csv","a+")
+        file.write(cadenaTAX)
+        file.close()
+    if cadenaOT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_OT.csv","a+")
+        file.write(cadenaOT)
+        file.close()
+    if cadenaGLC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_GLC.csv","a+")
+        file.write(cadenaGLC)
+        file.close()
+    if cadenaPIO != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_PIO.csv","a+")
+        file.write(cadenaPIO)
+        file.close()
+    if cadenaMID != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_MID.csv","a+")
+        file.write(cadenaMID)
+        file.close()
+    if cadenaMNPR != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_MNPR.csv","a+")
+        file.write(cadenaMNPR)
+        file.close()
+    if cadenaCHDR != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CHDR.csv","a+")
+        file.write(cadenaCHDR)
+        file.close()
+    if cadenaCDTL != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CDTL.csv","a+")
+        file.write(cadenaCDTL)
+        file.close()
+    if cadenaCMI != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CMI.csv","a+")
+        file.write(cadenaCMI)
+        file.close()
+    if cadenaCSVC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CSVC.csv","a+")
+        file.write(cadenaCSVC)
+        file.close()
+    if cadenaCTND != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CTND.csv","a+")
+        file.write(cadenaCTND)
+        file.close()
+    if cadenaCDSC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CDSC.csv","a+")
+        file.write(cadenaCDSC)
+        file.close()
+    if cadenaCOTD != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_COTD.csv","a+")
+        file.write(cadenaCOTD)
+        file.close()
+    if cadenaCTAX != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CTAX.csv","a+")
+        file.write(cadenaCTAX)
+        file.close()
+    if cadenaCVAT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CVAT.csv","a+")
+        file.write(cadenaCVAT)
+        file.close()
+    if cadenaFFD != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_FFD.csv","a+")
+        file.write(cadenaFFD)
+        file.close()
+    if cadenaFFL != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_FFL.csv","a+")
+        file.write(cadenaFFL)
+        file.close()
+    if cadenaCASH != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CASH.csv","a+")
+        file.write(cadenaCASH)
+        file.close()
+    if cadenaNONSLS != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_NONSLS.csv","a+")
+        file.write(cadenaNONSLS)
+        file.close()
+    if cadenaCSHRSHFT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CSHRSHFT.csv","a+")
+        file.write(cadenaCSHRSHFT)
+        file.close()
+    if cadenaCMB != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CMB.csv","a+")
+        file.write(cadenaCMB)
+        file.close()
+    if cadenaKDS != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_KDS.csv","a+")
+        file.write(cadenaKDS)
+        file.close()
+    if cadenaOTD != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_OTD.csv","a+")
+        file.write(cadenaOTD)
+        file.close()
+    if cadenaWST != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_WST.csv","a+")
+        file.write(cadenaWST)
+        file.close()
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\CustomerActivity_standard_CUSACT.csv","a+")
-    file.write(cadenaCUSACT)
-    file.close()
+    if cadenaINV != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_INV.csv","a+")
+        file.write(cadenaINV)
+        file.close()
+    if cadenaWST != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_WST.csv","a+")
+        file.write(cadenaWST)
+        file.close()
+    if cadenaPO != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_PO.csv","a+")
+        file.write(cadenaPO)
+        file.close()
+    if cadenaPODTL != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_PODTL.csv","a+")
+        file.write(cadenaPODTL)
+        file.close()
+    if cadenaRCPT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_RCPT.csv","a+")
+        file.write(cadenaRCPT)
+        file.close()
+    if cadenaRCPTDTL != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_RCPTDTL.csv","a+")
+        file.write(cadenaRCPTDTL)
+        file.close()
+    if cadenaXFER != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_XFER.csv","a+")
+        file.write(cadenaXFER)
+        file.close()
+    if cadenaXFERDTL != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_XFERDTL.csv","a+")
+        file.write(cadenaXFERDTL)
+        file.close()
+    if cadenaINVWST != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_INVWST.csv","a+")
+        file.write(cadenaINVWST)
+        file.close()
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Location_standard_LOC.csv","a+")
-    file.write(cadenaLOC)
-    file.close()
+    if cadenaCUSACT != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\CustomerActivity_standard_CUSACT.csv","a+")
+        file.write(cadenaCUSACT)
+        file.close()
 
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_PAY.csv","a+")
-    file.write(cadenaPAY)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_TC.csv","a+")
-    file.write(cadenaTC)
-    file.close()
-    file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_TCADJ.csv","a+")
-    file.write(cadenaTCADJ)
-    file.close()
+    if cadenaLOC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Location_standard_LOC.csv","a+")
+        file.write(cadenaLOC)
+        file.close()
+
+    if cadenaPAY != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_PAY.csv","a+")
+        file.write(cadenaPAY)
+        file.close()
+    if cadenaTC != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_TC.csv","a+")
+        file.write(cadenaTC)
+        file.close()
+    if cadenaTCADJ != "":
+        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_TCADJ.csv","a+")
+        file.write(cadenaTCADJ)
+        file.close()
 
 
     texto.close()
