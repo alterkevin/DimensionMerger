@@ -4,21 +4,47 @@ from shutil import move
 from os import remove
 #-*- coding: utf-8 -*-
 
-#\\Users\\Administrador\\Desktop\\DimensionData\\Datos\\standard.export
-#\\Users\\Administrador\\Desktop\\DimensionData\\Destino\\d.standard.merged
-#\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt
-#\\Users\\ksanchez\\Desktop\\DataBase\\destino2\
+"""
+El codigo se probaba en kevinator y en la base de datos, mejor conocida como base-chan.
+Al ser computadoras distintas, el path donde se encuentran las dimensiones es distinto,
+para agilizar el proceso de testeo, construccion y deployment se penso en guardar el path en variables,
+de esta forma solo se tiene que modificar el path en las variables y no en todas partes.
 
-Archivoszip=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.zip")
+En otro orden de asuntos, la dimension "WST" esta repetida en los estandar "GL" e "INV" segun la documentacion de oracle,
+como este es un codigo sin ningun tipo de fisuras se penso usar el indice de las listas para comprobar el origen de la dimension,
+por lo tanto y dependiendo de la compu donde te encuentres debes cambiar el path y los indices de esas dos dimensiones para usar el codigo.
+
+    Path e indices actuales de kevinator!
+
+        kspathstorage=("\\Users\\ksanchez\\Desktop\\DataBase\\storage") #\*.txt or *\.zip
+        kspathdestino=("\\Users\\ksanchez\\Desktop\\DataBase\\destino")
+        kspathbackup=("\\Users\\ksanchez\\Desktop\\DataBase\\backup")
+        GL=[39:41]
+        INV=[39:42]
+
+    path e indices actuales de base-chan uwu desune~
+
+        kspathstorage=("\\Users\\Administrador\\Desktop\\DimensionData\\Storage\\standard_zip") #\*.txt or *\.zip
+        kspathdestino=("\\Users\\Administrador\\Desktop\\DimensionData\\Destino\\d.standard.merged")
+        kspathbackup=("\\Users\\Administrador\\Desktop\\DimensionData\\Backup")
+        GL=[61:63]
+        INV=[61:64]
+"""
+
+kspathstorage=("\\Users\\ksanchez\\Desktop\\DataBase\\storage") #\*.txt or *\.zip
+kspathdestino=("\\Users\\ksanchez\\Desktop\\DataBase\\destino")
+kspathbackup=("\\Users\\ksanchez\\Desktop\\DataBase\\backup")
+
+Archivoszip=glob(f"{kspathstorage}\*.zip")
 for na in Archivoszip:
     archivo=ZipFile(na)
-    texto=archivo.extractall("\\Users\\ksanchez\\Desktop\\DataBase\\prueba")
+    texto=archivo.extractall(kspathstorage)
     archivo.close()
-    move(na,"\\Users\\ksanchez\\Desktop\\DataBase\\backup")
+    move(na,kspathbackup)
 
 
 
-lista=glob("\\Users\\ksanchez\\Desktop\\DataBase\\prueba\*.txt")
+lista=glob(f"{kspathstorage}\*.txt")
 for na in lista:
     texto=open(na)
 
@@ -62,10 +88,10 @@ for na in lista:
     cadenaCMB=""
     cadenaKDS=""
     cadenaOTD=""
-    cadenaWST=""
+    cadenaWST_GL=""
     #Inventory
     cadenaINV=""
-    cadenaWST=""
+    cadenaWST_I=""
     cadenaPO=""
     cadenaPODTL=""
     cadenaRCPT=""
@@ -111,14 +137,14 @@ for na in lista:
         or parte[0]=="CMI" or parte[0]=="CSVC" or parte[0]=="CTND" or parte[0]=="CDSC"
         or parte[0]=="COTD" or parte[0]=="CTAX" or parte[0]=="CVAT" or parte[0]=="FFD"
         or parte[0]=="FFL" or parte[0]=="CASH" or parte[0]=="NONSLS" or parte[0]=="CSHRSHFT"
-        or parte[0]=="CMB" or parte[0]=="KDS" or parte[0]=="OTD" or parte[0]=="WST"):
+        or parte[0]=="CMB" or parte[0]=="KDS" or parte[0]=="OTD" or parte[0]=="WST" and na[39:41]=="GL"):       #indiceGL
             parte.insert(1,fechaGL)
             parte.insert(1,localGL)    
 
         elif parte[0]=="INVID":
             localINV=parte[1]
             fechaINV=parte[3]
-        elif (parte[0]=="INV" or parte[0]=="WST" or parte[0]=="PO" or parte[0]=="PODTL"
+        elif (parte[0]=="INV" or parte[0]=="WST" and na[39:42]=="INV" or parte[0]=="PO" or parte[0]=="PODTL"     #indiceINV
         or parte[0]=="RCPT" or parte[0]=="RCPTDTL" or parte[0]=="XFER" or parte[0]=="XFERDTL"
         or parte[0]=="INVWST"):
             parte.insert(1,fechaINV)
@@ -146,7 +172,7 @@ for na in lista:
             parte.insert(1,localPAY)
 
         else:
-            file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\dimension_unknown.txt","a+")
+            file=open(f"{kspathdestino}\dimension_unknown.txt","a+")
             file.write(f"Se detecto la dimension desconocida {parte[0]} en el archivo {na}\n")
             file.close()
 
@@ -228,13 +254,13 @@ for na in lista:
             cadenaKDS+=str("|".join(parte)) 
         elif parte[0]=="OTD":
             cadenaOTD+=str("|".join(parte)) 
-        elif parte[0]=="WST":
-            cadenaWST+=str("|".join(parte))  
+        elif parte[0]=="WST" and na[39:41]=="GL":      #indiceGL
+            cadenaWST_GL+=str("|".join(parte))  
 
         elif parte[0]=="INV":
             cadenaINV+=str("|".join(parte)) 
-        elif parte[0]=="WST":
-            cadenaWST+=str("|".join(parte))
+        elif parte[0]=="WST" and na[39:42]=="INV":      #indiceINV
+            cadenaWST_I+=str("|".join(parte))
         elif parte[0]=="PO":
             cadenaPO+=str("|".join(parte)) 
         elif parte[0]=="PODTL":
@@ -266,217 +292,217 @@ for na in lista:
 
 
     if cadenaEMP != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMP.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMP.csv","a+")
         file.write(cadenaEMP)
         file.close()
     if cadenaEMPSHFT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSHFT.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMPSHFT.csv","a+")
         file.write(cadenaEMPSHFT)
         file.close()
     if cadenaEMPSVC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSVC.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMPSVC.csv","a+")
         file.write(cadenaEMPSVC)
         file.close()
     if cadenaEMPDSC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPDSC.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMPDSC.csv","a+")
         file.write(cadenaEMPDSC)
         file.close()
     if cadenaEMPTM != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPTM.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMPTM.csv","a+")
         file.write(cadenaEMPTM)
         file.close()
     if cadenaEMPSLS != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPSLS.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMPSLS.csv","a+")
         file.write(cadenaEMPSLS)
         file.close()
     if cadenaEMPOTSLS != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Employee_standard_EMPOTSLS.csv","a+")
+        file=open(f"{kspathdestino}\Employee_standard_EMPOTSLS.csv","a+")
         file.write(cadenaEMPOTSLS)
         file.close()
 
     if cadenaFPSUM != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_FPSUM.csv","a+")
+        file=open(f"{kspathdestino}\FixedPeriod_standard_FPSUM.csv","a+")
         file.write(cadenaFPSUM)
         file.close()
     if cadenaFPOT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_PFOT.csv","a+")
+        file=open(f"{kspathdestino}\FixedPeriod_standard_PFOT.csv","a+")
         file.write(cadenaFPOT)
         file.close()
     if cadenaFPMI != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\FixedPeriod_standard_FPMI.csv","a+")
+        file=open(f"{kspathdestino}\FixedPeriod_standard_FPMI.csv","a+")
         file.write(cadenaFPMI)
         file.close()
 
     if cadenaSUM != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_SUM.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_SUM.csv","a+")
         file.write(cadenaSUM)
         file.close()
     if cadenaDSC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_DSC.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_DSC.csv","a+")
         file.write(cadenaDSC)
         file.close()
     if cadenaSVC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_SVC.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_SVC.csv","a+")
         file.write(cadenaSVC)
         file.close()
     if cadenaTND != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_TND.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_TND.csv","a+")
         file.write(cadenaTND)
         file.close()
     if cadenaTAX != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_TAX.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_TAX.csv","a+")
         file.write(cadenaTAX)
         file.close()
     if cadenaOT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_OT.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_OT.csv","a+")
         file.write(cadenaOT)
         file.close()
     if cadenaGLC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_GLC.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_GLC.csv","a+")
         file.write(cadenaGLC)
         file.close()
     if cadenaPIO != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_PIO.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_PIO.csv","a+")
         file.write(cadenaPIO)
         file.close()
     if cadenaMID != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_MID.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_MID.csv","a+")
         file.write(cadenaMID)
         file.close()
     if cadenaMNPR != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_MNPR.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_MNPR.csv","a+")
         file.write(cadenaMNPR)
         file.close()
     if cadenaCHDR != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CHDR.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CHDR.csv","a+")
         file.write(cadenaCHDR)
         file.close()
     if cadenaCDTL != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CDTL.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CDTL.csv","a+")
         file.write(cadenaCDTL)
         file.close()
     if cadenaCMI != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CMI.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CMI.csv","a+")
         file.write(cadenaCMI)
         file.close()
     if cadenaCSVC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CSVC.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CSVC.csv","a+")
         file.write(cadenaCSVC)
         file.close()
     if cadenaCTND != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CTND.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CTND.csv","a+")
         file.write(cadenaCTND)
         file.close()
     if cadenaCDSC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CDSC.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CDSC.csv","a+")
         file.write(cadenaCDSC)
         file.close()
     if cadenaCOTD != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_COTD.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_COTD.csv","a+")
         file.write(cadenaCOTD)
         file.close()
     if cadenaCTAX != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CTAX.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CTAX.csv","a+")
         file.write(cadenaCTAX)
         file.close()
     if cadenaCVAT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CVAT.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CVAT.csv","a+")
         file.write(cadenaCVAT)
         file.close()
     if cadenaFFD != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_FFD.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_FFD.csv","a+")
         file.write(cadenaFFD)
         file.close()
     if cadenaFFL != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_FFL.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_FFL.csv","a+")
         file.write(cadenaFFL)
         file.close()
     if cadenaCASH != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CASH.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CASH.csv","a+")
         file.write(cadenaCASH)
         file.close()
     if cadenaNONSLS != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_NONSLS.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_NONSLS.csv","a+")
         file.write(cadenaNONSLS)
         file.close()
     if cadenaCSHRSHFT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CSHRSHFT.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CSHRSHFT.csv","a+")
         file.write(cadenaCSHRSHFT)
         file.close()
     if cadenaCMB != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_CMB.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_CMB.csv","a+")
         file.write(cadenaCMB)
         file.close()
     if cadenaKDS != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_KDS.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_KDS.csv","a+")
         file.write(cadenaKDS)
         file.close()
     if cadenaOTD != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_OTD.csv","a+")
+        file=open(f"{kspathdestino}\GeneralLedger_standard_OTD.csv","a+")
         file.write(cadenaOTD)
         file.close()
-    if cadenaWST != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\GeneralLedger_standard_WST.csv","a+")
-        file.write(cadenaWST)
+    if cadenaWST_GL != "":
+        file=open(f"{kspathdestino}\GeneralLedger_standard_WST.csv","a+")
+        file.write(cadenaWST_GL)
         file.close()
 
     if cadenaINV != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_INV.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_INV.csv","a+")
         file.write(cadenaINV)
         file.close()
-    if cadenaWST != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_WST.csv","a+")
-        file.write(cadenaWST)
+    if cadenaWST_I != "":
+        file=open(f"{kspathdestino}\Inventory_standard_WST.csv","a+")
+        file.write(cadenaWST_I)
         file.close()
     if cadenaPO != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_PO.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_PO.csv","a+")
         file.write(cadenaPO)
         file.close()
     if cadenaPODTL != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_PODTL.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_PODTL.csv","a+")
         file.write(cadenaPODTL)
         file.close()
     if cadenaRCPT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_RCPT.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_RCPT.csv","a+")
         file.write(cadenaRCPT)
         file.close()
     if cadenaRCPTDTL != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_RCPTDTL.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_RCPTDTL.csv","a+")
         file.write(cadenaRCPTDTL)
         file.close()
     if cadenaXFER != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_XFER.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_XFER.csv","a+")
         file.write(cadenaXFER)
         file.close()
     if cadenaXFERDTL != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_XFERDTL.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_XFERDTL.csv","a+")
         file.write(cadenaXFERDTL)
         file.close()
     if cadenaINVWST != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Inventory_standard_INVWST.csv","a+")
+        file=open(f"{kspathdestino}\Inventory_standard_INVWST.csv","a+")
         file.write(cadenaINVWST)
         file.close()
 
     if cadenaCUSACT != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\CustomerActivity_standard_CUSACT.csv","a+")
+        file=open(f"{kspathdestino}\CustomerActivity_standard_CUSACT.csv","a+")
         file.write(cadenaCUSACT)
         file.close()
 
     if cadenaLOC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Location_standard_LOC.csv","a+")
+        file=open(f"{kspathdestino}\Location_standard_LOC.csv","a+")
         file.write(cadenaLOC)
         file.close()
 
     if cadenaPAY != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_PAY.csv","a+")
+        file=open(f"{kspathdestino}\Payroll_standard_PAY.csv","a+")
         file.write(cadenaPAY)
         file.close()
     if cadenaTC != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_TC.csv","a+")
+        file=open(f"{kspathdestino}\Payroll_standard_TC.csv","a+")
         file.write(cadenaTC)
         file.close()
     if cadenaTCADJ != "":
-        file=open("\\Users\\ksanchez\\Desktop\\DataBase\\destino2\Payroll_standard_TCADJ.csv","a+")
+        file=open(f"{kspathdestino}\Payroll_standard_TCADJ.csv","a+")
         file.write(cadenaTCADJ)
         file.close()
 
