@@ -1,7 +1,9 @@
 from glob import glob
 from zipfile import ZipFile
 from shutil import move
-from os import remove
+from os import remove,mkdir
+from datetime import datetime,timedelta
+from errno import EEXIST
 #-*- coding: utf-8 -*-
 
 """
@@ -19,14 +21,14 @@ por lo tanto y dependiendo de la compu donde te encuentres debes cambiar el path
         kspathstorage=("\\Users\\ksanchez\\Desktop\\DataBase\\storage") #\*.txt or *\.zip
         kspathdestino=("\\Users\\ksanchez\\Desktop\\DataBase\\destino")
         kspathbackup=("\\Users\\ksanchez\\Desktop\\DataBase\\backup")
-        GL=[39:41]
-        INV=[39:42]
+        GL=[41:43]
+        INV=[41:44]
 
     path e indices actuales de base-chan uwu desune~
 
-        kspathstorage=("\\Users\\Administrador\\Desktop\\DimensionData\\Storage\\standard_zip") #\*.txt or *\.zip
-        kspathdestino=("\\Users\\Administrador\\Desktop\\DimensionData\\Destino\\d.standard.merged")
-        kspathbackup=("\\Users\\Administrador\\Desktop\\DimensionData\\Backup")
+        kspathstorage=("\\Users\\Administrator\\Desktop\\DimensionData\\Storage\\standard_zip") #\*.txt or *\.zip
+        kspathdestino=("\\Users\\Administrator\\Desktop\\DimensionData\\Destino\\d.standard.merged")
+        kspathbackup=("\\Users\\Administrator\\Desktop\\DimensionData\\Backup")
         GL=[61:63]
         INV=[61:64]
 """
@@ -34,6 +36,27 @@ por lo tanto y dependiendo de la compu donde te encuentres debes cambiar el path
 kspathstorage=("\\Users\\ksanchez\\Desktop\\DataBase\\storage") #\*.txt or *\.zip
 kspathdestino=("\\Users\\ksanchez\\Desktop\\DataBase\\destino")
 kspathbackup=("\\Users\\ksanchez\\Desktop\\DataBase\\backup")
+
+
+fecha_actual= datetime.now()
+diadelta=timedelta(days=1)
+
+fecha_carpeta_actual=datetime.strftime(fecha_actual,"%B_%Y")
+fecha_carpeta_ayer=fecha_actual-diadelta
+fecha_carpeta_ayer=datetime.strftime(fecha_carpeta_ayer,"%B_%Y")
+
+fecha_archivo_actual=datetime.strftime(fecha_actual,"%A-%d-%m-%y")
+fecha_archivo_ayer=fecha_actual-diadelta
+fecha_archivo_ayer=datetime.strftime(fecha_archivo_ayer,"%A-%d-%m-%y")
+
+try:
+    mkdir(str(f"{kspathdestino}\\{fecha_carpeta_ayer}"))
+    mkdir(str(f"{kspathdestino}\\{fecha_carpeta_actual}"))
+
+except OSError as e:
+    if e.errno != EEXIST:
+        raise
+
 
 Archivoszip=glob(f"{kspathstorage}\*.zip")
 for na in Archivoszip:
@@ -292,217 +315,217 @@ for na in lista:
 
 
     if cadenaEMP != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMP.csv","a+")
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMP.csv"),"a+")
         file.write(cadenaEMP)
         file.close()
-    if cadenaEMPSHFT != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMPSHFT.csv","a+")
+    elif cadenaEMPSHFT != "":
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMPSHFT.csv"),"a+")
         file.write(cadenaEMPSHFT)
         file.close()
-    if cadenaEMPSVC != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMPSVC.csv","a+")
+    elif cadenaEMPSVC != "":
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMPSVC.csv"),"a+")
         file.write(cadenaEMPSVC)
         file.close()
-    if cadenaEMPDSC != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMPDSC.csv","a+")
+    elif cadenaEMPDSC != "":
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMPDSC.csv"),"a+")
         file.write(cadenaEMPDSC)
         file.close()
-    if cadenaEMPTM != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMPTM.csv","a+")
+    elif cadenaEMPTM != "":
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMPTM.csv"),"a+")
         file.write(cadenaEMPTM)
         file.close()
-    if cadenaEMPSLS != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMPSLS.csv","a+")
+    elif cadenaEMPSLS != "":
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMPSLS.csv"),"a+")
         file.write(cadenaEMPSLS)
         file.close()
-    if cadenaEMPOTSLS != "":
-        file=open(f"{kspathdestino}\Employee_standard_EMPOTSLS.csv","a+")
+    elif cadenaEMPOTSLS != "":
+        file=open(str(f"{kspathdestino}\\{fecha_carpeta_ayer}\Employee_{fecha_archivo_ayer}_EMPOTSLS.csv"),"a+")
         file.write(cadenaEMPOTSLS)
         file.close()
 
-    if cadenaFPSUM != "":
-        file=open(f"{kspathdestino}\FixedPeriod_standard_FPSUM.csv","a+")
+    elif cadenaFPSUM != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\FixedPeriod_{fecha_archivo_ayer}_FPSUM.csv","a+")
         file.write(cadenaFPSUM)
         file.close()
-    if cadenaFPOT != "":
-        file=open(f"{kspathdestino}\FixedPeriod_standard_PFOT.csv","a+")
+    elif cadenaFPOT != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\FixedPeriod_{fecha_archivo_ayer}_PFOT.csv","a+")
         file.write(cadenaFPOT)
         file.close()
-    if cadenaFPMI != "":
-        file=open(f"{kspathdestino}\FixedPeriod_standard_FPMI.csv","a+")
+    elif cadenaFPMI != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\FixedPeriod_{fecha_archivo_ayer}_FPMI.csv","a+")
         file.write(cadenaFPMI)
         file.close()
 
-    if cadenaSUM != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_SUM.csv","a+")
+    elif cadenaSUM != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_SUM.csv","a+")
         file.write(cadenaSUM)
         file.close()
-    if cadenaDSC != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_DSC.csv","a+")
+    elif cadenaDSC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_DSC.csv","a+")
         file.write(cadenaDSC)
         file.close()
-    if cadenaSVC != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_SVC.csv","a+")
+    elif cadenaSVC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_SVC.csv","a+")
         file.write(cadenaSVC)
         file.close()
-    if cadenaTND != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_TND.csv","a+")
+    elif cadenaTND != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_TND.csv","a+")
         file.write(cadenaTND)
         file.close()
-    if cadenaTAX != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_TAX.csv","a+")
+    elif cadenaTAX != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_TAX.csv","a+")
         file.write(cadenaTAX)
         file.close()
-    if cadenaOT != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_OT.csv","a+")
+    elif cadenaOT != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_OT.csv","a+")
         file.write(cadenaOT)
         file.close()
-    if cadenaGLC != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_GLC.csv","a+")
+    elif cadenaGLC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_GLC.csv","a+")
         file.write(cadenaGLC)
         file.close()
-    if cadenaPIO != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_PIO.csv","a+")
+    elif cadenaPIO != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_PIO.csv","a+")
         file.write(cadenaPIO)
         file.close()
-    if cadenaMID != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_MID.csv","a+")
+    elif cadenaMID != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_MID.csv","a+")
         file.write(cadenaMID)
         file.close()
-    if cadenaMNPR != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_MNPR.csv","a+")
+    elif cadenaMNPR != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_MNPR.csv","a+")
         file.write(cadenaMNPR)
         file.close()
-    if cadenaCHDR != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CHDR.csv","a+")
+    elif cadenaCHDR != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CHDR.csv","a+")
         file.write(cadenaCHDR)
         file.close()
-    if cadenaCDTL != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CDTL.csv","a+")
+    elif cadenaCDTL != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CDTL.csv","a+")
         file.write(cadenaCDTL)
         file.close()
-    if cadenaCMI != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CMI.csv","a+")
+    elif cadenaCMI != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CMI.csv","a+")
         file.write(cadenaCMI)
         file.close()
-    if cadenaCSVC != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CSVC.csv","a+")
+    elif cadenaCSVC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CSVC.csv","a+")
         file.write(cadenaCSVC)
         file.close()
-    if cadenaCTND != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CTND.csv","a+")
+    elif cadenaCTND != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CTND.csv","a+")
         file.write(cadenaCTND)
         file.close()
-    if cadenaCDSC != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CDSC.csv","a+")
+    elif cadenaCDSC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CDSC.csv","a+")
         file.write(cadenaCDSC)
         file.close()
-    if cadenaCOTD != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_COTD.csv","a+")
+    elif cadenaCOTD != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_COTD.csv","a+")
         file.write(cadenaCOTD)
         file.close()
-    if cadenaCTAX != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CTAX.csv","a+")
+    elif cadenaCTAX != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CTAX.csv","a+")
         file.write(cadenaCTAX)
         file.close()
-    if cadenaCVAT != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CVAT.csv","a+")
+    elif cadenaCVAT != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CVAT.csv","a+")
         file.write(cadenaCVAT)
         file.close()
-    if cadenaFFD != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_FFD.csv","a+")
+    elif cadenaFFD != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_FFD.csv","a+")
         file.write(cadenaFFD)
         file.close()
-    if cadenaFFL != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_FFL.csv","a+")
+    elif cadenaFFL != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_FFL.csv","a+")
         file.write(cadenaFFL)
         file.close()
-    if cadenaCASH != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CASH.csv","a+")
+    elif cadenaCASH != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CASH.csv","a+")
         file.write(cadenaCASH)
         file.close()
-    if cadenaNONSLS != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_NONSLS.csv","a+")
+    elif cadenaNONSLS != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_NONSLS.csv","a+")
         file.write(cadenaNONSLS)
         file.close()
-    if cadenaCSHRSHFT != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CSHRSHFT.csv","a+")
+    elif cadenaCSHRSHFT != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CSHRSHFT.csv","a+")
         file.write(cadenaCSHRSHFT)
         file.close()
-    if cadenaCMB != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_CMB.csv","a+")
+    elif cadenaCMB != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_CMB.csv","a+")
         file.write(cadenaCMB)
         file.close()
-    if cadenaKDS != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_KDS.csv","a+")
+    elif cadenaKDS != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_KDS.csv","a+")
         file.write(cadenaKDS)
         file.close()
-    if cadenaOTD != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_OTD.csv","a+")
+    elif cadenaOTD != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_OTD.csv","a+")
         file.write(cadenaOTD)
         file.close()
-    if cadenaWST_GL != "":
-        file=open(f"{kspathdestino}\GeneralLedger_standard_WST.csv","a+")
+    elif cadenaWST_GL != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\GeneralLedger_{fecha_archivo_ayer}_WST.csv","a+")
         file.write(cadenaWST_GL)
         file.close()
 
-    if cadenaINV != "":
-        file=open(f"{kspathdestino}\Inventory_standard_INV.csv","a+")
+    elif cadenaINV != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_INV.csv","a+")
         file.write(cadenaINV)
         file.close()
-    if cadenaWST_I != "":
-        file=open(f"{kspathdestino}\Inventory_standard_WST.csv","a+")
+    elif cadenaWST_I != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_WST.csv","a+")
         file.write(cadenaWST_I)
         file.close()
-    if cadenaPO != "":
-        file=open(f"{kspathdestino}\Inventory_standard_PO.csv","a+")
+    elif cadenaPO != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_PO.csv","a+")
         file.write(cadenaPO)
         file.close()
-    if cadenaPODTL != "":
-        file=open(f"{kspathdestino}\Inventory_standard_PODTL.csv","a+")
+    elif cadenaPODTL != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_PODTL.csv","a+")
         file.write(cadenaPODTL)
         file.close()
-    if cadenaRCPT != "":
-        file=open(f"{kspathdestino}\Inventory_standard_RCPT.csv","a+")
+    elif cadenaRCPT != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_RCPT.csv","a+")
         file.write(cadenaRCPT)
         file.close()
-    if cadenaRCPTDTL != "":
-        file=open(f"{kspathdestino}\Inventory_standard_RCPTDTL.csv","a+")
+    elif cadenaRCPTDTL != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_RCPTDTL.csv","a+")
         file.write(cadenaRCPTDTL)
         file.close()
-    if cadenaXFER != "":
-        file=open(f"{kspathdestino}\Inventory_standard_XFER.csv","a+")
+    elif cadenaXFER != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_XFER.csv","a+")
         file.write(cadenaXFER)
         file.close()
-    if cadenaXFERDTL != "":
-        file=open(f"{kspathdestino}\Inventory_standard_XFERDTL.csv","a+")
+    elif cadenaXFERDTL != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_XFERDTL.csv","a+")
         file.write(cadenaXFERDTL)
         file.close()
-    if cadenaINVWST != "":
-        file=open(f"{kspathdestino}\Inventory_standard_INVWST.csv","a+")
+    elif cadenaINVWST != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Inventory_{fecha_archivo_ayer}_INVWST.csv","a+")
         file.write(cadenaINVWST)
         file.close()
 
-    if cadenaCUSACT != "":
-        file=open(f"{kspathdestino}\CustomerActivity_standard_CUSACT.csv","a+")
+    elif cadenaCUSACT != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\CustomerActivity_{fecha_archivo_ayer}_CUSACT.csv","a+")
         file.write(cadenaCUSACT)
         file.close()
 
-    if cadenaLOC != "":
-        file=open(f"{kspathdestino}\Location_standard_LOC.csv","a+")
+    elif cadenaLOC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_actual}\Location_{fecha_archivo_actual}_LOC.csv","a+")
         file.write(cadenaLOC)
         file.close()
 
-    if cadenaPAY != "":
-        file=open(f"{kspathdestino}\Payroll_standard_PAY.csv","a+")
+    elif cadenaPAY != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Payroll_{fecha_archivo_ayer}_PAY.csv","a+")
         file.write(cadenaPAY)
         file.close()
-    if cadenaTC != "":
-        file=open(f"{kspathdestino}\Payroll_standard_TC.csv","a+")
+    elif cadenaTC != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Payroll_{fecha_archivo_ayer}_TC.csv","a+")
         file.write(cadenaTC)
         file.close()
-    if cadenaTCADJ != "":
-        file=open(f"{kspathdestino}\Payroll_standard_TCADJ.csv","a+")
+    elif cadenaTCADJ != "":
+        file=open(f"{kspathdestino}\\{fecha_carpeta_ayer}\Payroll_{fecha_archivo_ayer}_TCADJ.csv","a+")
         file.write(cadenaTCADJ)
         file.close()
 
