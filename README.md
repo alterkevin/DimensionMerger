@@ -15,13 +15,13 @@ por lo tanto y dependiendo de la compu donde te encuentres debes cambiar el path
         kspathstorage=("\\Users\\ksanchez\\Desktop\\DataBase\\storage") #\*.txt or *\.zip
         kspathdestino=("\\Users\\ksanchez\\Desktop\\DataBase\\destino")
         kspathbackup=("\\Users\\ksanchez\\Desktop\\DataBase\\backup")
-        GL=[39:41]
-        INV=[39:42]
+        GL=[41:43]
+        INV=[41:44]
 
     path e indices actuales de base-chan uwu desune~
 
         kspathstorage=("\\Users\\Administrador\\Desktop\\DimensionData\\Storage\\standard_zip") #\*.txt or *\.zip
         kspathdestino=("\\Users\\Administrador\\Desktop\\DimensionData\\Destino\\d.standard.merged")
         kspathbackup=("\\Users\\Administrador\\Desktop\\DimensionData\\Backup")
-        GL=[61:63]
-        INV=[61:64]
+        GL=[51:53]
+        INV=[51:54]

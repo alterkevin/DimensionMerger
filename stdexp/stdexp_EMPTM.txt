@@ -1,0 +1,25 @@
+LOAD DATA INFILE 'C:/Users/Administrator/Desktop/DimensionData/Destino/d.standard.merged/{fecha_carpeta_ayer}/EMP_{fecha_archivo_ayer}_EMPTM.csv' IGNORE
+    INTO TABLE twf.stdexp_emptm
+    CHARACTER SET UTF8mb4
+    FIELDS TERMINATED BY '|'
+    LINES TERMINATED BY '\n'
+
+   (
+	twf.stdexp_emptm.Record_Type,
+    twf.stdexp_emptm.StoreID,
+    twf.stdexp_emptm.RVC_name,
+    twf.stdexp_emptm.RVC_num,
+    twf.stdexp_emptm.RVC_MasterName,
+    twf.stdexp_emptm.RVC_MasterNum,
+    twf.stdexp_emptm.EMP_name,
+    twf.stdexp_emptm.EMP_Surname,
+    twf.stdexp_emptm.EMP_number,
+    twf.stdexp_emptm.TM_name,
+    twf.stdexp_emptm.TN_number,
+    twf.stdexp_emptm.TM_MasterName,
+    twf.stdexp_emptm.TM_MasterNum,
+    twf.stdexp_emptm.TM_type,
+    twf.stdexp_emptm.TM_total,
+    twf.stdexp_emptm.TM_count
+	)
+	SET twf.stdexp_emptm.ID = NULL;
