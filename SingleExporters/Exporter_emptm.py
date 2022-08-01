@@ -27,9 +27,9 @@ try:
     )
     if conexion.is_connected():
         print("conexion exitosa")
-        cursor=conexion.cursor()
+        cursor=conexion.cursor()    #_{fecha_archivo_ayer}_C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\basechan
         cursor.execute(f"""LOAD DATA 
-    INFILE 'C:/Users/Administrator/Desktop/DimensionData/Destino/d.standard.merged/{fecha_carpeta_ayer}/EMP_{fecha_archivo_ayer}_EMPTM.csv' IGNORE
+    INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/basechan/EMP_Monday-27-06-22_EMPTM.csv' IGNORE 
     INTO TABLE twf.stdexp_emptm
     CHARACTER SET UTF8mb4
     FIELDS TERMINATED BY '|'

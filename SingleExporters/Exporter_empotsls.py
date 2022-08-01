@@ -44,7 +44,7 @@ try:
     twf.stdexp_empotsls.RVC_MasterName,
     twf.stdexp_empotsls.RVC_MasterNum,
     twf.stdexp_empotsls.EMP_name,
-    twf.stdexp_empotsls.EMP_Surname,
+    twf.stdexp_empotsls.EMP_surname,
     twf.stdexp_empotsls.EMP_number,
     twf.stdexp_empotsls.OT_name,
     twf.stdexp_empotsls.OT_number,
