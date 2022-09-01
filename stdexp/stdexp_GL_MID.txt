@@ -1,0 +1,51 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_mid
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_mid.Record_Type,
+twf.stdexp_mid.StoreID,
+twf.stdexp_mid.Date,
+twf.stdexp_mid.RVC_num,
+twf.stdexp_mid.OT_number,
+twf.stdexp_mid.MI_number,
+twf.stdexp_mid.MI_Name,
+twf.stdexp_mid.MI_pricelevel,
+twf.stdexp_mid.MI_SlsCount,
+twf.stdexp_mid.MI_SlsTotal,
+twf.stdexp_mid.MI_TotalDscnt,
+twf.stdexp_mid.MI_ReturnCount,
+twf.stdexp_mid.MI_volume,
+twf.stdexp_mid.MI_PrepCost,
+twf.stdexp_mid.MI_MasterName,
+twf.stdexp_mid.MI_MasterNumber,
+twf.stdexp_mid.RVC_name,
+twf.stdexp_mid.RVC_MasterName,
+twf.stdexp_mid.RVC_MasterNum,
+twf.stdexp_mid.MI_name2,
+twf.stdexp_mid.MI_MasterName2,
+twf.stdexp_mid.MI_majorgroup_name,
+twf.stdexp_mid.MI_majorgroup_number,
+twf.stdexp_mid.MI_MasterMajorgroup_name,
+twf.stdexp_mid.MI_Master_majorgroup_number,
+twf.stdexp_mid.MI_familygroup_name,
+twf.stdexp_mid.MI_familygroup_num,
+twf.stdexp_mid.MI_Master_familygroup_name,
+twf.stdexp_mid.MI_Master_familygroup_num,
+twf.stdexp_mid.OT_name,
+twf.stdexp_mid.OT_MasterName,
+twf.stdexp_mid.OT_MasterNum,
+twf.stdexp_mid.MI_GrossS_beforediscount,
+twf.stdexp_mid.DSC_GrossVat,
+twf.stdexp_mid.MI_GrossS_afterdiscount,
+twf.stdexp_mid.MI_VAT_beforediscount,
+twf.stdexp_mid.MI_DscntVat,
+twf.stdexp_mid.MI_VatAfterDscnt,
+twf.stdexp_mid.MI_TotalVat,
+twf.stdexp_mid.MI_NetSales_beforediscount,
+twf.stdexp_mid.MI_DscntNetVat,
+twf.stdexp_mid.MI_SlsNetVat
+)
+SET twf.stdexp_mid.ID = NULL;

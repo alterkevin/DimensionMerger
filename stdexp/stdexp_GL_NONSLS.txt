@@ -1,0 +1,40 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_nonsls
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_nonsls.Record_Type,
+twf.stdexp_nonsls.StoreID,
+twf.stdexp_nonsls.Date,
+twf.stdexp_nonsls.RVC_name,
+twf.stdexp_nonsls.RVC_num,
+twf.stdexp_nonsls.RVC_MasterName,
+twf.stdexp_nonsls.RVC_MasterNum,
+twf.stdexp_nonsls.EMP_name,
+twf.stdexp_nonsls.EMP_Surname,
+twf.stdexp_nonsls.EMP_number,
+twf.stdexp_nonsls.EMP_ShiftNumber,
+twf.stdexp_nonsls.NON_WorkstationName,
+twf.stdexp_nonsls.NON_WorkstationNum,
+twf.stdexp_nonsls.NON_ReasonCodeName,
+twf.stdexp_nonsls.NON_ReasonCodeNum,
+twf.stdexp_nonsls.NON_ReasonCodeMasterName,
+twf.stdexp_nonsls.NON_ReasonCodeMasterNum,
+twf.stdexp_nonsls.NON_CashierName,
+twf.stdexp_nonsls.NON_CashierNum,
+twf.stdexp_nonsls.NON_CashierMasterName,
+twf.stdexp_nonsls.NON_CashierMasterNum,
+twf.stdexp_nonsls.NON_CashierShiftNum,
+twf.stdexp_nonsls.NON_CashierDrawerNum,
+twf.stdexp_nonsls.NON_TransactionDate,
+twf.stdexp_nonsls.NON_FixedPeriod,
+twf.stdexp_nonsls.NON_SlsType,
+twf.stdexp_nonsls.NON_Reference,
+twf.stdexp_nonsls.NON_TotalAmount,
+twf.stdexp_nonsls.NON_TotalCount,
+twf.stdexp_nonsls.NON_TotalCancelCount,
+twf.stdexp_nonsls.NON_TotalCancel
+)
+SET twf.stdexp_nonsls.ID = NULL;

@@ -1,0 +1,35 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_mnpr
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_mnpr.Record_Type,
+twf.stdexp_mnpr.StoreID,
+twf.stdexp_mnpr.Date,
+twf.stdexp_mnpr.RVC_num,
+twf.stdexp_mnpr.MI_number,
+twf.stdexp_mnpr.MNPR_LvlPrice,
+twf.stdexp_mnpr.MNPR_LvlName,
+twf.stdexp_mnpr.MNPR_Price,
+twf.stdexp_mnpr.MNPR_Cost,
+twf.stdexp_mnpr.MNPR_Efectivity,
+twf.stdexp_mnpr.MNPR_TaxClassNumber,
+twf.stdexp_mnpr.MNPR_MenuLvl,
+twf.stdexp_mnpr.RVC_name,
+twf.stdexp_mnpr.RVC_MasterName,
+twf.stdexp_mnpr.RVC_MasterNum,
+twf.stdexp_mnpr.MI_name,
+twf.stdexp_mnpr.MI_MasterName,
+twf.stdexp_mnpr.MI_MasterNum,
+twf.stdexp_mnpr.MNPR_majorgroup_name,
+twf.stdexp_mnpr.MNPR_majorgroup_number,
+twf.stdexp_mnpr.MNPR_MasterMajorgroup_name,
+twf.stdexp_mnpr.MI_Master_majorgroup_number,
+twf.stdexp_mnpr.MNPR_familygroup_name,
+twf.stdexp_mnpr.MNPR_familygroup_num,
+twf.stdexp_mnpr.MNPR_Master_familygroup_name,
+twf.stdexp_mnpr.MNPR_Master_familygroup_num
+)
+SET twf.stdexp_mnpr.ID = NULL;

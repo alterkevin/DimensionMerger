@@ -1,0 +1,32 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_rcpt
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_rcpt.Record_Type,
+twf.stdexp_rcpt.StoreID,
+twf.stdexp_rcpt.Date,
+twf.stdexp_rcpt.RCPT_ReceiptNumber,
+twf.stdexp_rcpt.RCPT_VendorName,
+twf.stdexp_rcpt.RCPT_VendorNumber,
+twf.stdexp_rcpt.RCPT_VendorMasterName,
+twf.stdexp_rcpt.RCPT_VendorMasterNumber,
+twf.stdexp_rcpt.RCPT_VendorAddress1,
+twf.stdexp_rcpt.RCPT_VendorAddress2,
+twf.stdexp_rcpt.RCPT_VendorCity,
+twf.stdexp_rcpt.RCPT_ReceiptReceivedBy,
+twf.stdexp_rcpt.RCPT_ReceiptStatus,
+twf.stdexp_rcpt.RCPT_InvoiceDoc,
+twf.stdexp_rcpt.RCPT_PackingDoc,
+twf.stdexp_rcpt.RCPT_PackingDate,
+twf.stdexp_rcpt.RCPT_TotalAdjusted,
+twf.stdexp_rcpt.RCPT_InvoiceDate,
+twf.stdexp_rcpt.RCPT_InvoiceTotal,
+twf.stdexp_rcpt.RCPT_PurchaseOrderCreatedBy,
+twf.stdexp_rcpt.RCPT_PurchaseOrderNum,
+twf.stdexp_rcpt.RCPT_PurchaseOrderStatus,
+twf.stdexp_rcpt.RCPT_PurchaseOrderDate
+)
+SET twf.stdexp_rcpt.ID = NULL;

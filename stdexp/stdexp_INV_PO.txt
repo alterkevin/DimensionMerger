@@ -1,0 +1,26 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_po
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_po.Record_Type,
+twf.stdexp_po.StoreID,
+twf.stdexp_po.Date,
+twf.stdexp_po.PO_EmployeeName,
+twf.stdexp_po.PO_Number,
+twf.stdexp_po.PO_VendorName,
+twf.stdexp_po.PO_VendorNumber,
+twf.stdexp_po.PO_VendorMasterName,
+twf.stdexp_po.PO_VendorMasterNum,
+twf.stdexp_po.PO_VendorAddress1,
+twf.stdexp_po.PO_VendorAddress2,
+twf.stdexp_po.PO_VendorCity,
+twf.stdexp_po.PO_Status,
+twf.stdexp_po.PO_OrderDate,
+twf.stdexp_po.PO_ExpectedDeliveryDate,
+twf.stdexp_po.PO_LastUpdateBusinessDate,
+twf.stdexp_po.PO_DocAndDescription
+)
+SET twf.stdexp_po.ID = NULL;

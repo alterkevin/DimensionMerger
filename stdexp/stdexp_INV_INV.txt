@@ -1,0 +1,49 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_inv
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_inv.Record_Type,
+twf.stdexp_inv.StoreID,
+twf.stdexp_inv.Date,
+twf.stdexp_inv.INV_ItemName1,
+twf.stdexp_inv.INV_ItemName2,
+twf.stdexp_inv.INV_ItemNameNum,
+twf.stdexp_inv.INV_ItemMasterName1,
+twf.stdexp_inv.INV_ItemMasterName2,
+twf.stdexp_inv.INV_ItemMasterNum,
+twf.stdexp_inv.INV_Type,
+twf.stdexp_inv.INV_CostCenterName,
+twf.stdexp_inv.INV_CostCenterNum,
+twf.stdexp_inv.INV_CostCenterMasterName,
+twf.stdexp_inv.INV_CostCenterMasterNum,
+twf.stdexp_inv.INV_CostGroupName,
+twf.stdexp_inv.INV_CostGroupNumber,
+twf.stdexp_inv.INV_CostGroupMasterName,
+twf.stdexp_inv.INV_CostGroupMasterNum,
+twf.stdexp_inv.INV_StandardUnitMeasureName,
+twf.stdexp_inv.INV_StandardUnitMeasureNum,
+twf.stdexp_inv.INV_StandardUnitMeasureMasterName,
+twf.stdexp_inv.INV_StandardUnitMeasureMasterNum,
+twf.stdexp_inv.INV_BaseUnitMeasureName,
+twf.stdexp_inv.INV_BaseUnitMeasureNum,
+twf.stdexp_inv.INV_BaseUnitMeasureMasterName,
+twf.stdexp_inv.INV_BaseUnitMeasureMasterNum,
+twf.stdexp_inv.INV_OnHandQuantity,
+twf.stdexp_inv.INV_OnHandValue,
+twf.stdexp_inv.INV_ReceiptQuantity,
+twf.stdexp_inv.INV_ReceiptValue,
+twf.stdexp_inv.INV_UsageQuantity,
+twf.stdexp_inv.INV_ProductionUsageQuantity,
+twf.stdexp_inv.INV_ProductionReceiptQuantity,
+twf.stdexp_inv.INV_ProductionReceiptValue,
+twf.stdexp_inv.INV_TransferInQuantity,
+twf.stdexp_inv.INV_TransferInValue,
+twf.stdexp_inv.INV_TransferOutQuantity,
+twf.stdexp_inv.INV_VarianceQuantity,
+twf.stdexp_inv.INV_CountedQuantity,
+twf.stdexp_inv.INV_CountedTime
+)
+SET twf.stdexp_inv.ID = NULL;

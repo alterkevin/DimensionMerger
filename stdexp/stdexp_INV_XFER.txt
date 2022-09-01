@@ -1,0 +1,26 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_xfer
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_xfer.Record_Type,
+twf.stdexp_xfer.StoreID,
+twf.stdexp_xfer.Date,
+twf.stdexp_xfer.XFER_TransferNum,
+twf.stdexp_xfer.XFER_TransferRefNum,
+twf.stdexp_xfer.XFER_TransferExtRefNum,
+twf.stdexp_xfer.XFER_CostCenterSourceName,
+twf.stdexp_xfer.XFER_CostCenterSourceNum,
+twf.stdexp_xfer.XFER_CostCenterSourceMasterName,
+twf.stdexp_xfer.XFER_CostCenterSourceMasterNum,
+twf.stdexp_xfer.XFER_CostCenterDestName,
+twf.stdexp_xfer.XFER_CostCenterDestNum,
+twf.stdexp_xfer.XFER_CostCenterDestMasterName,
+twf.stdexp_xfer.XFER_CostCenterDestMasterNum,
+twf.stdexp_xfer.XFER_TransferAmount,
+twf.stdexp_xfer.XFER_TransferStatus,
+twf.stdexp_xfer.XFER_TransferDate
+)
+SET twf.stdexp_xfer.ID = NULL;

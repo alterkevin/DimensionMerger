@@ -1,0 +1,21 @@
+create table twf.stdexp_po(
+	ID INT NOT NULL AUTO_INCREMENT,
+	Record_Type VARCHAR(45) NOT NULL,
+	StoreID VARCHAR(45) NOT NULL,
+	Date Date NOT NULL,
+    PO_EmployeeName VARCHAR(45), 
+    PO_Number INT,
+    PO_VendorName VARCHAR(45),
+    PO_VendorNumber INT,
+    PO_VendorMasterName VARCHAR(45),
+    PO_VendorMasterNum INT,
+    PO_VendorAddress1 VARCHAR(45),
+    PO_VendorAddress2 VARCHAR(45),
+    PO_VendorCity VARCHAR(45),
+    PO_Status INT,
+    PO_OrderDate DATE,
+    PO_ExpectedDeliveryDate DATE,
+    PO_LastUpdateBusinessDate VARCHAR(45),
+    PO_DocAndDescription VARCHAR(45),
+	PRIMARY KEY(ID)
+);

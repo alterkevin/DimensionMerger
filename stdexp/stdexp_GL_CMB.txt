@@ -1,0 +1,45 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_cmb
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_cmb.Record_Type,
+twf.stdexp_cmb.StoreID,
+twf.stdexp_cmb.Date,
+twf.stdexp_cmb.RVC_name,
+twf.stdexp_cmb.RVC_num,
+twf.stdexp_cmb.RVC_MasterName,
+twf.stdexp_cmb.RVC_MasterNum,
+twf.stdexp_cmb.OT_name,
+twf.stdexp_cmb.OT_number,
+twf.stdexp_cmb.OT_MasterName,
+twf.stdexp_cmb.OT_MasterNumber,
+twf.stdexp_cmb.CMB_MainComboItemName,
+twf.stdexp_cmb.CMB_MainComboItemNum,
+twf.stdexp_cmb.CMB_MainComboItemMasterName,
+twf.stdexp_cmb.CMB_MainComboItemMasterNum,
+twf.stdexp_cmb.CMB_Component_ItemName,
+twf.stdexp_cmb.CMB_Component_ItemNum,
+twf.stdexp_cmb.CMB_Component_ItemMasterName,
+twf.stdexp_cmb.CMB_Component_ItemMasterNum,
+twf.stdexp_cmb.CMB_Original_ItemName,
+twf.stdexp_cmb.CMB_Original_itemNum,
+twf.stdexp_cmb.CMB_Original_ItemMasterName,
+twf.stdexp_cmb.CMB_Original_ItemMasterNum,
+twf.stdexp_cmb.CMB_SalesTotal,
+twf.stdexp_cmb.CMB_SalesCount,
+twf.stdexp_cmb.CMB_GrossS_beforediscount,
+twf.stdexp_cmb.CMB_TotalDscnt,
+twf.stdexp_cmb.CMB_DscntGrossVat,
+twf.stdexp_cmb.CMB_GrossS_AfterDscnt,
+twf.stdexp_cmb.CMB_VAT_beforediscount,
+twf.stdexp_cmb.CMB_DscntVAT,
+twf.stdexp_cmb.CMB_VatAfterDscnt,
+twf.stdexp_cmb.CMB_TotalVat,
+twf.stdexp_cmb.CMB_NetSales_beforediscount,
+twf.stdexp_cmb.CMB_DscntNetVat,
+twf.stdexp_cmb.CMB_NetVatSales
+)
+SET twf.stdexp_cmb.ID = NULL;

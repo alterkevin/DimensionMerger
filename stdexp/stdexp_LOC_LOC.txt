@@ -1,0 +1,21 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_loc
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_loc.Record_Type,
+twf.stdexp_loc.StoreLvl,
+twf.stdexp_loc.Date,
+twf.stdexp_loc.LOC_Name,
+twf.stdexp_loc.LOC_ID,
+twf.stdexp_loc.Organization_Lvl,
+twf.stdexp_loc.Source,
+twf.stdexp_loc.Open_Date,
+twf.stdexp_loc.Timezone,
+twf.stdexp_loc.Currency,
+twf.stdexp_loc.Date_Current,
+twf.stdexp_loc.Date_Before
+)
+SET twf.stdexp_loc.ID = NULL;

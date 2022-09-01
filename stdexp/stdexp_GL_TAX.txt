@@ -1,0 +1,33 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_tax
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_tax.Record_Type,
+twf.stdexp_tax.StoreID,
+twf.stdexp_tax.Date,
+twf.stdexp_tax.RVC_num,
+twf.stdexp_tax.TAX_number,
+twf.stdexp_tax.TAX_name,
+twf.stdexp_tax.TAX_Rate,
+twf.stdexp_tax.TAX_TotalDay,
+twf.stdexp_tax.TAX_TaxableSls,
+twf.stdexp_tax.TAX_ExemptSls,
+twf.stdexp_tax.TAX_MasterName,
+twf.stdexp_tax.TAX_MasterNum,
+twf.stdexp_tax.RVC_name,
+twf.stdexp_tax.RVC_MasterName,
+twf.stdexp_tax.RVC_MasterNum,
+twf.stdexp_tax.TAX_Type,
+twf.stdexp_tax.TAX_RateVat,
+twf.stdexp_tax.TAX_GrossS,
+twf.stdexp_tax.TAX_NetSales,
+twf.stdexp_tax.TAX_TotalPrcnt,
+twf.stdexp_tax.TAX_TotalTaxableSls,
+twf.stdexp_tax.TAX_TotalTaxableSlsVat,
+twf.stdexp_tax.TAX_VatAfterDscnt,
+twf.stdexp_tax.TAX_SlsNetVatAfterDscnt
+)
+SET twf.stdexp_tax.ID = NULL;

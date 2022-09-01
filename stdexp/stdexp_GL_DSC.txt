@@ -1,0 +1,23 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_dsc
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_dsc.Record_Type,
+twf.stdexp_dsc.StoreID,
+twf.stdexp_dsc.Date,
+twf.stdexp_dsc.RVC_num,
+twf.stdexp_dsc.DSC_number,
+twf.stdexp_dsc.DSC_name,
+twf.stdexp_dsc.DSC_Total,
+twf.stdexp_dsc.DSC_Count,
+twf.stdexp_dsc.DSC_MasterName,
+twf.stdexp_dsc.DSC_MasterNum,
+twf.stdexp_dsc.RVC_name,
+twf.stdexp_dsc.RVC_MasterName,
+twf.stdexp_dsc.RVC_MasterNum,
+twf.stdexp_dsc.DSC_GrossVat
+)
+SET twf.stdexp_dsc.ID = NULL;

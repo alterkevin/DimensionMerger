@@ -1,0 +1,22 @@
+create table twf.stdexp_xferdtl(
+	ID INT NOT NULL AUTO_INCREMENT,
+	Record_Type VARCHAR(45) NOT NULL,
+	StoreID VARCHAR(45) NOT NULL,
+	Date Date NOT NULL,
+    XFER_TransferDetailNum INT,
+    XFER_TransferNum INT,
+    XFER_InvItemName1 VARCHAR(45),
+    XFER_InvItemName2 VARCHAR(45),
+    XFER_InvItemNum INT,
+    XFER_InvItemMasterName1 VARCHAR(45),
+    XFER_InvItemMasterName2 VARCHAR(45),
+    XFER_InvItemMasterNum INT,
+    XFER_UnitMeasureName VARCHAR(45),
+    XFER_UnitMeasureNum INT,
+    XFER_UnitMeasureMasterName VARCHAR(45),
+    XFER_UnitMeasureMasterNum INT,
+    XFER_Quiantity DECIMAL(15,6),
+    XFER_Price DECIMAL(15,6),
+    XFER_PriceChanged INT,
+	PRIMARY KEY(ID)
+);

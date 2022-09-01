@@ -1,0 +1,53 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_emp
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_emp.Record_Type,
+twf.stdexp_emp.StoreID,
+twf.stdexp_emp.Date,
+twf.stdexp_emp.RVC_name,
+twf.stdexp_emp.RVC_num,
+twf.stdexp_emp.RVC_MasterName,
+twf.stdexp_emp.RVC_MasterNum,
+twf.stdexp_emp.EMP_Name,
+twf.stdexp_emp.EMP_Surname,
+twf.stdexp_emp.EMP_number,
+twf.stdexp_emp.EMP_TotalDayTransactions,
+twf.stdexp_emp.EMP_TotalDayGuests,
+twf.stdexp_emp.EMP_TablesTurned,
+twf.stdexp_emp.EMP_TableTime,
+twf.stdexp_emp.EMP_TotalDayNetSales,
+twf.stdexp_emp.EMP_TotalDaySrvcChrg,
+twf.stdexp_emp.EMP_TotalDayVoid,
+twf.stdexp_emp.EMP_TotalDayVoidCount,
+twf.stdexp_emp.EMP_TotalDayReturns,
+twf.stdexp_emp.EMP_TotalDayReturnCount,
+twf.stdexp_emp.EMP_Credit,
+twf.stdexp_emp.EMP_Round,
+twf.stdexp_emp.EMP_ErrorCorrectAmount,
+twf.stdexp_emp.EMP_ErrorCorrectCount,
+twf.stdexp_emp.EMP_MngrVoidAmount,
+twf.stdexp_emp.EMP_MngrVoidCount,
+twf.stdexp_emp.EMP_CancelAmount,
+twf.stdexp_emp.EMP_CancelCount,
+twf.stdexp_emp.EMP_ChecksOpenAmount,
+twf.stdexp_emp.EMP_ChecksOpenCount,
+twf.stdexp_emp.EMP_ChecksClosedAmount,
+twf.stdexp_emp.EMP_ChecksClosedCount,
+twf.stdexp_emp.EMP_ChecksTransferInAmount,
+twf.stdexp_emp.EMP_ChecksTransferInCount,
+twf.stdexp_emp.EMP_ChecksTransferOutAmount,
+twf.stdexp_emp.EMP_ChecksTransferOutCount,
+twf.stdexp_emp.EMP_NonRevenueSrvcChrg,
+twf.stdexp_emp.EMP_TipTotal,
+twf.stdexp_emp.EMP_Cary_Over_Total,
+twf.stdexp_emp.EMP_Cary_Over_Count,
+twf.stdexp_emp.EMP_GrossS_beforediscount,
+twf.stdexp_emp.EMP_DSC_total,
+twf.stdexp_emp.EMP_DSC_GrossVat,
+twf.stdexp_emp.EMP_GrossS
+)
+SET twf.stdexp_emp.ID = NULL;

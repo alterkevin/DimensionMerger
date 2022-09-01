@@ -1,0 +1,27 @@
+LOAD DATA
+INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Basechan/Station/' IGNORE
+INTO TABLE twf.stdexp_xferdtl
+CHARACTER SET UTF8mb4
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+(
+twf.stdexp_xferdtl.Record_Type,
+twf.stdexp_xferdtl.StoreID,
+twf.stdexp_xferdtl.Date,
+twf.stdexp_xferdtl.XFER_TransferDetailNum,
+twf.stdexp_xferdtl.XFER_TransferNum,
+twf.stdexp_xferdtl.XFER_InvItemName1,
+twf.stdexp_xferdtl.XFER_InvItemName2,
+twf.stdexp_xferdtl.XFER_InvItemNum,
+twf.stdexp_xferdtl.XFER_InvItemMasterName1,
+twf.stdexp_xferdtl.XFER_InvItemMasterName2,
+twf.stdexp_xferdtl.XFER_InvItemMasterNum,
+twf.stdexp_xferdtl.XFER_UnitMeasureName,
+twf.stdexp_xferdtl.XFER_UnitMeasureNum,
+twf.stdexp_xferdtl.XFER_UnitMeasureMasterName,
+twf.stdexp_xferdtl.XFER_UnitMeasureMasterNum,
+twf.stdexp_xferdtl.XFER_Quiantity,
+twf.stdexp_xferdtl.XFER_Price,
+twf.stdexp_xferdtl.XFER_PriceChanged
+)
+SET twf.stdexp_xferdtl.ID = NULL;
